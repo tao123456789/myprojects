@@ -1,0 +1,24 @@
+server:
+  port: 8090
+# 应用名称
+spring:
+  application:
+    name: GBF
+  redis:
+    host: localhost
+    port: 6379
+#  cloud:
+#    nacos:
+#      discovery:
+#        service: http://localhost:8848
+#废弃eureka，用nacos
+eureka:
+  instance:
+    #显示IP地址
+    prefer-ip-address: true
+    #默认值为：机器名称：服务名称：实例得端口
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@localhost:8081/eureka/eureka
+

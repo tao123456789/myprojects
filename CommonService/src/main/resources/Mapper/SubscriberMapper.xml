@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.example.common.Mapper.SubscriberMapper">
+    <!--定义一个名为BaseResultMap的返回类型-->
+    <resultMap id="SubscriberBO" type="com.example.common.Entity.BO.subscriber.SubscriberBO">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <id column="name" jdbcType="VARCHAR" property="name" />
+        <result column="code" jdbcType="VARCHAR" property="code" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+    </resultMap>
+    <!--    按照type查询订阅者-->
+    <select id="getSubscriberByType" resultMap="SubscriberBO">
+        select * from subscriber where code = #{code,jdbcType=VARCHAR} and status = 1
+    </select>
+
+    <select id="getSubscriberList" resultMap="SubscriberBO">
+        select * from subscriber
+    </select>
+    <update id="changeStatus">
+        update subscriber set status=${status} where id=#{id}
+    </update>
+    </mapper>
+

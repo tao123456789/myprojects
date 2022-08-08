@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="com.example.token.Mapper.AspectLogMapper">
+    <!--定义一个基础返回类型-->
+    <resultMap id="BaseResultMap" type="com.example.token.Entity.BO.aspectlog.AspectLogBO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="uuid" jdbcType="VARCHAR" property="uuid"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="request_url" jdbcType="VARCHAR" property="request_url"/>
+        <result column="request_method" jdbcType="VARCHAR" property="request_method"/>
+        <result column="request_ip" jdbcType="VARCHAR" property="request_ip"/>
+        <result column="request_data" jdbcType="VARCHAR" property="request_data"/>
+        <result column="response_data" jdbcType="VARCHAR" property="response_data"/>
+        <result column="create_name" jdbcType="VARCHAR" property="create_name"/>
+        <result column="create_time" jdbcType="VARCHAR" property="create_time"/>
+        <result column="finish_time" jdbcType="VARCHAR" property="finish_time"/>
+        <result column="time" jdbcType="VARCHAR" property="time"/>
+    </resultMap>
+
+    <select id="getAspectLogList" resultMap="BaseResultMap">
+        select uuid,status,request_url,request_method,request_ip,request_data,create_name,create_time,finish_time,time from aspectlog
+        order by create_time desc
+        <if test="start!=null and end!=null">
+            limit #{start},#{end}
+        </if>
+    </select>
+    <select id="getAspectLogCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM aspectlog
+    </select>
+
+    <select id="getAspectLogInfoByUuid" resultMap="BaseResultMap">
+        SELECT * FROM aspectlog where uuid=#{uuid}
+    </select>
+
+    <insert id="insertAspectLog">
+        insert into aspectlog(uuid,status,request_url,request_method,request_ip,request_data,response_data,create_name,create_time,finish_time,time) values(#{uuid},#{status},#{request_url},#{request_method},#{request_ip},#{request_data},#{response_data},#{create_name},#{create_time},#{finish_time},#{time})
+    </insert>
+</mapper>

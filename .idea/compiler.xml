@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="MQService" />
+        <module name="SpringCloudProvider" />
+        <module name="Token-api" />
+        <module name="Token" />
+        <module name="CommonService" />
+        <module name="GBF" />
+        <module name="MQService-api" />
+        <module name="CommonService-api" />
+        <module name="ScheduleService" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="GateWay" target="1.8" />
+      <module name="GBFService" target="1.8" />
+      <module name="SpringCloud-Client" target="1.8" />
+      <module name="SpringCloud-Client2" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="CommonService" options="-parameters" />
+      <module name="CommonService-api" options="-parameters" />
+      <module name="GBF" options="-parameters" />
+      <module name="GBFService" options="-parameters" />
+      <module name="GateWay" options="-parameters" />
+      <module name="MQService" options="-parameters" />
+      <module name="MQService-api" options="-parameters" />
+      <module name="ScheduleService" options="-parameters" />
+      <module name="SpringCloud-Client" options="-parameters" />
+      <module name="SpringCloudProvider" options="-parameters" />
+      <module name="Token" options="-parameters" />
+      <module name="Token-api" options="-parameters" />
+      <module name="myprojects" options="" />
+    </option>
+  </component>
+</project>

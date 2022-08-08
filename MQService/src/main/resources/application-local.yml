@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: MQService
+  #rabbit配置
+  rabbitmq:
+    port: 5672
+    host: localhost
+    username: guest
+    password: guest
+  #  数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    type:  com.alibaba.druid.pool.DruidDataSource
+server:
+  port: 9999
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:Mapper/*.xml
+
+#euraka配置
+eureka:
+  instance:
+    #显示IP地址
+    prefer-ip-address: true
+    #默认值为：机器名称：服务名称：实例得端口
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://root:123456@localhost:8081/eureka/eureka
