@@ -1,10 +1,13 @@
 package com.example.schedule.service.Schedule.Impl;
 
+import com.example.MQService.Entity.PO.EmailPO;
 import com.example.schedule.Entity.BO.schedule.ScheduleBO;
 import com.example.schedule.Entity.BO.schedule.ScheduleTaskBO;
 import com.example.schedule.Mapper.ScheduleMapper;
-import com.example.common.Service.Impl.EmailServiceImpl;
-import com.example.token.Utils.date.DateUtil;
+import com.example.schedule.Utils.date.DateUtil;
+import com.example.schedule.Utils.feign.EmailMQFeign;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,10 +16,10 @@ import java.util.List;
 
 @Service
 public class ScheduleTask {
-    @Resource
-    ScheduleMapper scheduleMapper;
-    @Resource
-    EmailServiceImpl emailServiceImpl;
+    @Autowired
+    private ScheduleMapper scheduleMapper;
+    @Autowired
+    EmailMQFeign emailServiceImpl;
 
 
     public void dailyScheduleTask() throws Exception {
@@ -38,6 +41,10 @@ public class ScheduleTask {
                 System.out.println("添加成功！");
             }
         }
-        emailServiceImpl.SendMessageToSubscriberBYMQ("1","【每日任务更新】",taskList.toString());
+        EmailPO emailPO=new EmailPO();
+        emailPO.setContent(taskList.toString());
+        emailPO.setTitle("添加任务更新");
+        emailPO.setSubject("添加任务更新");
+        emailServiceImpl.emailSendToAdmin(emailPO);
     }
 }

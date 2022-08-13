@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableEurekaClient
-//注意写在MapperScan的前面
 @EnableFeignClients
 @MapperScan(basePackages = {"com.example.token","com.example.common.Mapper"})
 @EnableSwagger2

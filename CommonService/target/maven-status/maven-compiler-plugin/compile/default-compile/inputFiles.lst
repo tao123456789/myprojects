@@ -1,0 +1,17 @@
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Mapper\SubscriberMapper.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Entity\BO\setting\SettingBO.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Mapper\ModuleMapper.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Utils\rabbitMQ\consume\MQReceiver.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Utils\rabbitMQ\QQEmailUtils.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Entity\BO\subscriber\SubscriberBO.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Service\Impl\TokenServiceImpl.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Mapper\UserMapper.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Utils\commonUtil\CommonUtil.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Utils\redis\RedisUtils.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Config\RedisConfig.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Utils\userUtil\UserUtil.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Service\Impl\RedisServiceImpl\RedisUtilsServiceImpl.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Service\Impl\EmailServiceImpl.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Mapper\SettingMapper.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\CommonApplication.java
+H:\IdeaProjects\myprojects\CommonService\src\main\java\com\example\common\Service\Impl\UserServicImpl\UserServiceImpl.java

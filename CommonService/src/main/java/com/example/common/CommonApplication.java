@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
-@MapperScan(basePackages = {"com.example.common"})
+@MapperScan(basePackages = {"com.example.common.Mapper"})
 public class CommonApplication {
     public static void main(String[] args) {
         SpringApplication.run(CommonApplication.class, args);

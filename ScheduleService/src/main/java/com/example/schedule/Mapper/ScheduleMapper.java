@@ -4,6 +4,7 @@ import com.example.schedule.Entity.BO.schedule.ScheduleBO;
 import com.example.schedule.Entity.BO.schedule.ScheduleTaskBO;
 import org.apache.ibatis.annotations.Param;
 import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 

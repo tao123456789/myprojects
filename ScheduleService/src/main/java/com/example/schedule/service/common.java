@@ -1,14 +1,15 @@
 package com.example.schedule.service;
 
 import com.example.MQService.Entity.PO.EmailPO;
+import com.example.schedule.Utils.feign.EmailMQFeign;
+import com.example.schedule.service.NotApiService.NotApiServiceImpl;
 import com.example.schedule.service.Schedule.Impl.ScheduleTask;
-import com.example.token.Service.NotApiService.NotApiServiceImpl;
-import com.example.token.Utils.feign.EmailMQFeign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
-
+@Component
 public class common {
     /*
     1，定时任务的cron的格式
@@ -59,7 +60,7 @@ public class common {
 
     @Autowired
     ScheduleTask scheduleTask;
-    @Resource
+    @Autowired
     EmailMQFeign emailService;
     @Autowired
     NotApiServiceImpl notApiService;
@@ -78,20 +79,20 @@ public class common {
         EmailPO emailPO=new EmailPO();
         emailPO.setSubject("【每日壁纸推荐】");
         emailPO.setContent(notApiService.getWallhavenPic());
-        emailService.emailSendByQQMail(emailPO);
+        emailService.emailSendToAdmin(emailPO);
         emailPO.setContent(notApiService.getWBHotMessage());
         emailPO.setSubject("微博热搜【1小时刷新1次】");
     }
 
     //每隔2个小时执行一次:0 0 0/2 * * ?
     @Scheduled(cron = "0 0 0/2 * * ?")
-    public void Schedule3(){
+    public void Schedule3() throws Exception {
 //        System.out.println("2小时定时任务");
     }
 
-    //每隔5分钟秒执行一次:0 * * * * ?
-    @Scheduled(cron = "0 0/5 * * * ?")
-    public void Schedule4() {
+    //每隔1分钟秒执行一次:0 * * * * ?
+    @Scheduled(cron = "0 0/1 * * * ?")
+    public void Schedule4() throws Exception {
 //        System.out.println("5分钟定时任务");
     }
 
@@ -110,7 +111,13 @@ public class common {
     //5秒执行:0 0 0/5 * * ?
     @Scheduled(cron = "0/5 * * * * ?")
     public void Schedule7() throws Exception {
-//        emailService.SendMessageToSubscriberBYMQ("1","每日壁纸推荐",notApiService.getWallhavenPic());
+//        EmailPO emailPO=new EmailPO();
+//        emailPO.setContent(notApiService.getWBHotMessage());
+//        emailPO.setSubject("微博热搜【1小时刷新1次】");
+//        emailPO.setTitle("微博热搜【1小时刷新1次】");
 //        System.out.println("5秒定时任务");
+//        emailService.emailSendToAdmin(emailPO);
+
+//        scheduleTask.dailyScheduleTask();
     }
 }

@@ -5,7 +5,6 @@ import com.example.common.Entity.BO.User.UserBO;
 import com.example.common.Entity.PO.RedisPO.RedisPO;
 import com.example.common.Entity.VO.UserModuleVO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Service
 @FeignClient(name = "CommonService")
 public interface CommonServiceFeign {
     @GetMapping("/common/user/getAllUser")

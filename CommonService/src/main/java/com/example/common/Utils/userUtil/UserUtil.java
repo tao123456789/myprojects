@@ -1,6 +1,6 @@
 package com.example.common.Utils.userUtil;
 
-import com.example.common.Service.Impl.UserServiceImpl;
+import com.example.common.Service.Impl.UserServicImpl.UserServiceImpl;
 import com.example.common.Utils.redis.RedisUtils;
 import com.example.common.Entity.BO.User.UserBO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class UserUtil {
-    @Autowired
+    @Resource
     RedisUtils redisUtils;
     @Autowired
     HttpServletRequest httpServletRequest;

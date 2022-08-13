@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+
+<mapper namespace="com.example.schedule.Mapper.ScheduleMapper">
+    <!--定义一个名为BaseResultMap的返回类型-->
+    <resultMap id="ScheduleTaskBO" type="com.example.schedule.Entity.BO.schedule.ScheduleTaskBO">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <id column="userid" jdbcType="INTEGER" property="userid" />
+        <result column="ExcuteTime" jdbcType="VARCHAR" property="ExcuteTime" />
+        <result column="Status" jdbcType="VARCHAR" property="Status" />
+        <result column="TaskContent" jdbcType="VARCHAR" property="TaskContent" />
+        <result column="CreateTime" jdbcType="VARCHAR" property="CreateTime" />
+        <result column="CreateName" jdbcType="VARCHAR" property="CreateName" />
+        <result column="UpdateTime" jdbcType="VARCHAR" property="UpdateTime" />
+        <result column="UpdateName" jdbcType="VARCHAR" property="UpdateName" />
+    </resultMap>
+    <!--定义一个名为BaseResultMap2的返回类型-->
+    <resultMap id="ScheduleBO" type="com.example.schedule.Entity.BO.schedule.ScheduleBO">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <id column="userid" jdbcType="INTEGER" property="userid" />
+        <result column="TaskContent" jdbcType="VARCHAR" property="TaskContent" />
+        <result column="CreateTime" jdbcType="VARCHAR" property="CreateTime" />
+        <result column="CreateName" jdbcType="VARCHAR" property="CreateName" />
+        <result column="UpdateTime" jdbcType="VARCHAR" property="UpdateTime" />
+        <result column="UpdateName" jdbcType="VARCHAR" property="UpdateName" />
+    </resultMap>
+
+    <!--    查询用户每日任务表-->
+    <select id="getScheduleList" resultMap="ScheduleBO">
+        select * from dailyschedule where userid = #{userid,jdbcType=INTEGER}
+    </select>
+    <!--    查询用户每日任务表-->
+    <select id="getAllScheduleList" resultMap="ScheduleBO">
+        select * from dailyschedule where 1=1
+    </select>
+    <!--    查询用户每日任务表-->
+    <select id="getScheduleTaskList" resultMap="ScheduleTaskBO">
+        select * from dailyscheduletask where userid = #{userid,jdbcType=INTEGER} and ExcuteTime = #{startTime,jdbcType=VARCHAR}
+    </select>
+    <!--    查询单个任务-->
+    <select id="getScheduleTaskListById" resultMap="ScheduleTaskBO">
+        select * from dailyscheduletask where id = #{id,jdbcType=INTEGER}
+    </select>
+    <!--    添加日常任务-->
+    <insert id="addSchedule" parameterType="com.example.schedule.Entity.BO.schedule.ScheduleBO">
+        insert into dailyschedule(userid,TaskContent,CreateTime,CreateName,UpdateTime,UpdateName) values(#{userid},#{TaskContent},#{CreateTime},#{CreateName},#{UpdateTime},#{UpdateName})
+    </insert>
+    <!--    添加日常任务-->
+    <insert id="addScheduleTask" parameterType="com.example.schedule.Entity.BO.schedule.ScheduleTaskBO">
+        insert into dailyscheduletask(userid,TaskContent,ExcuteTime,Status,CreateTime,CreateName,UpdateTime,UpdateName) values(#{userid},#{TaskContent},#{ExcuteTime},#{Status},#{CreateTime},#{CreateName},#{UpdateTime},#{UpdateName})
+    </insert>
+    <!--    更新任务状态-->
+    <update id="updateScheduleTaskStatus" parameterType="java.lang.Integer">
+        update dailyscheduletask set Status=1 where id=#{taskid}
+    </update>
+
+    <delete id="deleteSchedule" parameterType="java.lang.Integer">
+        delete from dailyschedule where id=#{id}
+    </delete>
+    <delete id="deleteScheduleTask" parameterType="java.lang.Integer">
+        delete from dailyscheduletask where id=#{id}
+    </delete>
+</mapper>

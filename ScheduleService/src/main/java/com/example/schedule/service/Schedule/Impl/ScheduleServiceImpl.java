@@ -1,12 +1,14 @@
 package com.example.schedule.service.Schedule.Impl;
 
+import com.example.MQService.Entity.PO.EmailPO;
 import com.example.schedule.Entity.BO.schedule.ScheduleBO;
 import com.example.schedule.Entity.BO.schedule.ScheduleTaskBO;
 import com.example.schedule.Mapper.ScheduleMapper;
+import com.example.schedule.Utils.date.DateUtil;
+import com.example.schedule.Utils.feign.EmailMQFeign;
 import com.example.schedule.service.Schedule.ScheduleService;
-import com.example.common.Service.Impl.EmailServiceImpl;
-import com.example.token.Utils.date.DateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,8 +20,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Resource
     private ScheduleMapper scheduleMapper;
-    @Resource
-    EmailServiceImpl emailServiceImpl;
+    @Autowired
+    private EmailMQFeign emailMQFeign;
 
     @Override
     public List<ScheduleTaskBO> getScheduleTaskList(int userid, String startTime) {
@@ -46,7 +48,12 @@ public class ScheduleServiceImpl implements ScheduleService {
     public Boolean updateScheduleTaskStatus(int taskid,String usermail) throws Exception {
         ScheduleTaskBO scheduleTaskBO=scheduleMapper.getScheduleTaskListById(taskid);
         String content="恭喜您！：【"+scheduleTaskBO.getExcuteTime()+"】的任务：【"+scheduleTaskBO.getTaskContent()+"】 在【"+ new DateUtil().getNowFormat3() +"】已经完成了！请再接再厉，加油！";
-        emailServiceImpl.SendWBMessageToOneBYMQ("【每日任务更新】",content,usermail);
+
+        EmailPO emailPO=new EmailPO();
+        emailPO.setContent(content);
+        emailPO.setTitle("每日任务更新");
+        emailPO.setSubject("每日任务更新");
+        emailMQFeign.emailSendToAdmin(emailPO);
         return scheduleMapper.updateScheduleTaskStatus(taskid);
     }
 
