@@ -1,6 +1,5 @@
 package com.example.token.Api.Schedule;
 
-import com.example.common.Utils.userUtil.UserUtil;
 import com.example.token.Annotation.AspectLogAnnptation;
 import com.example.token.Config.Interface.UserLoginToken;
 import com.example.token.Entity.BO.schedule.ScheduleBO;

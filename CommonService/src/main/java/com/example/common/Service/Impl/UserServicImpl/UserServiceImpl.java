@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Boolean insertUserModule (UserModuleVO userModuleVO) {
-        return moduleMapper.insertUserModule(userModuleVO.getId(),userModuleVO.getModuleid());
+        return moduleMapper.insertUserModule(userModuleVO.getUserid(),userModuleVO.getModuleid());
     }
 
     @Override

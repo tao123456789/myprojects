@@ -5,8 +5,8 @@ import com.example.token.Utils.feign.CommonServiceFeign;
 import com.example.token.Annotation.AspectLogAnnptation;
 import com.example.token.Config.Interface.UserLoginToken;
 import com.example.token.Entity.BO.netdisk.FileInfoBO;
+import com.example.token.Utils.feign.SettingServiceFeign;
 import com.example.token.Utils.file.FileUtil;
-import com.example.token.Utils.setting.SettingUtil;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class fileApiController {
     @Autowired
     private CommonServiceFeign userUtil;
     @Resource
-    SettingUtil settingUtil;
+    SettingServiceFeign settingServiceFeign;
 
     @UserLoginToken
     @GetMapping("/getFileList")
@@ -43,9 +43,9 @@ public class fileApiController {
     public ArrayList<Object> getFileList (String url) {
         int userid=userUtil.getCurrentUserInfo().getId();
         if(url==null){
-            url=settingUtil.getSettingCodeByName("NetDiskPath")+userid;
+            url=settingServiceFeign.getSettingCodeByName("NetDiskPath")+userid;
         }else {
-            url = settingUtil.getSettingCodeByName("NetDiskPath") + userid + url;
+            url = settingServiceFeign.getSettingCodeByName("NetDiskPath") + userid + url;
         }
         FileInfoBO fileInfoBO=new FileInfoBO();
         fileInfoBO.setF_pathloc(url);
@@ -79,7 +79,7 @@ public class fileApiController {
         if(url.isEmpty()){
             return "路径不能为空";
         }
-        fileUtil.uploadFile(file,settingUtil.getSettingCodeByName("NetDiskPath")+userid+url,userid);
+        fileUtil.uploadFile(file,settingServiceFeign.getSettingCodeByName("NetDiskPath")+userid+url,userid);
         return "上传成功！";
     }
 
@@ -93,7 +93,7 @@ public class fileApiController {
             return "文件名不能为空";
         }
         try {
-            fileUtil.addFilePath(settingUtil.getSettingCodeByName("NetDiskPath") + userid + currentPath, name, userid);
+            fileUtil.addFilePath(settingServiceFeign.getSettingCodeByName("NetDiskPath") + userid + currentPath, name, userid);
         }catch (Exception e){
             return "新建失败！！！文件已存在";
         }
@@ -107,12 +107,12 @@ public class fileApiController {
     public void downloadFile (@RequestParam("url") String url, String fileID, HttpServletRequest request, HttpServletResponse response) throws IOException {
         int userid=userUtil.getCurrentUserInfo().getId();
         FileInfoBO fileInfoBO=new FileInfoBO();
-        fileInfoBO.setF_pathloc(settingUtil.getSettingCodeByName("NetDiskPath")+userid+url);
+        fileInfoBO.setF_pathloc(settingServiceFeign.getSettingCodeByName("NetDiskPath")+userid+url);
         fileInfoBO.setF_id(fileID);
         fileInfoBO.setF_userid(userid);
         List<FileInfoBO> fileInfoBOList=fileUtil.getfileList(fileInfoBO);
         if(!fileInfoBOList.isEmpty()) {
-            String downPath=settingUtil.getSettingCodeByName("NetDiskPath")+userid+url+"/"+fileInfoBOList.get(0).getF_namesvr();
+            String downPath=settingServiceFeign.getSettingCodeByName("NetDiskPath")+userid+url+"/"+fileInfoBOList.get(0).getF_namesvr();
             log.info("下载文件："+downPath);
             try {
                 File file = new File(downPath);

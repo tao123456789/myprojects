@@ -14,8 +14,8 @@ import java.util.List;
 
 @FeignClient(name = "CommonService")
 public interface CommonServiceFeign {
-    @GetMapping("/common/user/getAllUser")
-    List<UserBO> GetAllUser(UserBO userBO);
+    @PostMapping("/common/user/getAllUser")
+    List<UserBO> GetAllUser(@RequestBody UserBO userBO);
 
     @GetMapping("/common/user/getUserByUserId")
     UserBO GetUserByUserId(@RequestParam("userid")int userid);
@@ -30,7 +30,7 @@ public interface CommonServiceFeign {
     @PostMapping("/common/user/updateUser")
     int updateUser(@RequestBody UserBO user);
 
-    @GetMapping("/common/user/updateUserInfo")
+    @PostMapping("/common/user/updateUserInfo")
     int updateUserInfo(@RequestBody UserBO user);
 
     @PostMapping("/common/user/getUserModuleByUserId")

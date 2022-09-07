@@ -1,7 +1,7 @@
 package com.example.common.Utils.rabbitMQ;
 
 import com.example.MQService.Entity.PO.EmailPO;
-import com.example.common.Entity.BO.setting.SettingBO;
+import com.example.common.Entity.BO.SettingBO.SettingBO;
 import com.example.common.Mapper.SettingMapper;
 import org.springframework.stereotype.Component;
 

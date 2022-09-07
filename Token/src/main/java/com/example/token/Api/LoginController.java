@@ -1,13 +1,12 @@
 package com.example.token.Api;
 
 import com.example.MQService.Entity.PO.EmailPO;
-import com.example.token.Service.EmailService.EmailServiceImpl;
+import com.example.common.Entity.VO.UserModuleVO;
 import com.example.token.Utils.feign.CommonServiceFeign;
 import com.example.common.Entity.BO.User.UserBO;
 import com.example.common.Entity.PO.RedisPO.RedisPO;
 import com.example.token.Annotation.AspectLogAnnptation;
 import com.example.token.Config.Interface.PassToken;
-import com.example.common.Mapper.ModuleMapper;
 import com.example.token.Utils.basicEnum.ResultCode;
 import com.example.token.Utils.BasicClass.BasicResponse;
 import com.example.token.Utils.feign.EmailMQFeign;
@@ -41,8 +40,6 @@ public class LoginController{
     HttpUtil httpUtil;
     @Resource
     HttpServletRequest httpServletRequest;
-    @Resource
-    ModuleMapper moduleMapper;
 
     //登录
     @PostMapping ("/login")
@@ -117,7 +114,12 @@ public class LoginController{
                 userBO.setInviteAuth(UUID.randomUUID().toString().replaceAll("-", ""));
                 System.out.println(userBO);
                 if ((commonServiceFeign.insertUser(userBO) == 1)) {
-                    moduleMapper.insertUserModule(commonServiceFeign.GetUserByUserName(userBO.getUserName()).getId(),1);
+                    UserModuleVO userModuleVO=new UserModuleVO();
+                    System.out.println("==================="+commonServiceFeign.GetUserByUserName(userBO.getUserName()).getId());
+                    userModuleVO.setUserid(commonServiceFeign.GetUserByUserName(userBO.getUserName()).getId());
+                    //初始化只赋予个人模块的权限
+                    userModuleVO.setModuleid(1);
+                    commonServiceFeign.insertUserModule(userModuleVO);
                     return new BasicResponse(ResultCode.SUCCESS,password);
                 }
             }

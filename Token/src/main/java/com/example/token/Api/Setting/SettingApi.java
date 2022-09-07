@@ -1,10 +1,10 @@
 package com.example.token.Api.Setting;
 
+import com.example.common.Entity.BO.SettingBO.SettingBO;
+import com.example.token.Service.SettingService.SettingServiceImpl;
 import com.example.token.Utils.feign.CommonServiceFeign;
-import com.example.common.Entity.BO.setting.SettingBO;
 import com.example.token.Annotation.AspectLogAnnptation;
 import com.example.token.Config.Interface.UserLoginToken;
-import com.example.token.Service.SettingService.SettingServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class SettingApi {
     @PostMapping("/getSettingList")
     @ApiOperation("获取设置列表")
     @AspectLogAnnptation
-    public List<SettingBO> getSetting(SettingBO settingBO){
+    public List<SettingBO> getSetting(@RequestBody SettingBO settingBO){
         return settingServiceImpl.getSetting(settingBO);
     }
 

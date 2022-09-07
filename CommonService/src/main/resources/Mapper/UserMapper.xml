@@ -34,7 +34,7 @@
 
 <!--    查询所有的用户信息-->
     <select id="GetAllUser" resultMap="BaseResultMap" parameterType="com.example.common.Entity.BO.User.UserBO">
-        select * from user where 1=1
+        select username,realname,qqmail,tel,ip,area,brower,os,logintime from user where 1=1
         <if test="userName!=null" >
             and username=#{userName}
         </if>

@@ -1,9 +1,12 @@
+com\example\common\Api\SettingService.class
 com\example\common\Entity\BO\Module\ModuleBO.class
 com\example\common\Api\RedisUtilsService.class
 com\example\common\Entity\BO\User\UserBO.class
 com\example\common\Entity\PO\RedisPO\RedisPO.class
 com\example\common\feign\EmailMQFeign.class
 com\example\common\Api\UserService.class
+com\example\common\Entity\BO\SubscriberBO\SubscriberBO.class
 com\example\common\Api\TokenService.class
+com\example\common\Entity\BO\SettingBO\SettingBO.class
 com\example\common\Entity\VO\UserModuleVO.class
 com\example\common\feign\hystrix\EmailMQFeignHystrix.class

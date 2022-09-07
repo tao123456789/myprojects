@@ -1,8 +1,8 @@
 package com.example.common.Service.Impl;
 
 import com.example.MQService.Entity.PO.EmailPO;
+import com.example.common.Entity.BO.SubscriberBO.SubscriberBO;
 import com.example.common.feign.EmailMQFeign;
-import com.example.common.Entity.BO.subscriber.SubscriberBO;
 import com.example.common.Mapper.SubscriberMapper;
 import org.springframework.stereotype.Service;
 

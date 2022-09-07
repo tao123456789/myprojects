@@ -1,6 +1,6 @@
 package com.example.common.Mapper;
 
-import com.example.common.Entity.BO.setting.SettingBO;
+import com.example.common.Entity.BO.SettingBO.SettingBO;
 import org.mapstruct.Mapper;
 
 import java.util.List;

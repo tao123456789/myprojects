@@ -105,7 +105,7 @@ public class common {
     //整点05分执行:0 0 0/12 * * ?
     @Scheduled(cron = "0 0/5 * * * ?")
     public void Schedule6() throws Exception {
-        System.out.println("12点05分定时任务");
+//        System.out.println("12点05分定时任务");
     }
 
     //5秒执行:0 0 0/5 * * ?

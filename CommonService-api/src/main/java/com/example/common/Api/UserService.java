@@ -10,8 +10,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/common/user")
 public interface UserService {
-    @GetMapping("/getAllUser")
-    List<UserBO> GetAllUser(UserBO userBO);
+    @PostMapping("/getAllUser")
+    List<UserBO> GetAllUser(@RequestBody UserBO userBO);
 
     @GetMapping("/getUserByUserId")
     UserBO GetUserByUserId(@RequestParam("userid")int userid);
@@ -27,16 +27,16 @@ public interface UserService {
     @PostMapping("/updateUser")
     int updateUser(@RequestBody UserBO user);
 
-    @GetMapping("/updateUserInfo")
+    @PostMapping("/updateUserInfo")
     int updateUserInfo(@RequestBody UserBO user);
 
     @PostMapping("/getUserModuleByUserId")
     List<UserModuleVO> getUserModuleByUserId(@RequestParam("userid")int userid);
 
-    @PostMapping("/common/user/removeModuleByID")
+    @PostMapping("/removeModuleByID")
     Boolean removeModuleByID(@RequestParam("id")int id);
 
-    @PostMapping("/common/user/getAllModuleList")
+    @PostMapping("/getAllModuleList")
     List<ModuleBO> getAllModuleList();
 
     @PostMapping("/insertUserModule")

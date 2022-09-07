@@ -115,14 +115,14 @@ public class WebLogAspect {
         endTime = System.currentTimeMillis();
         aspectLogBO.setStatus("success");
         aspectLogBO.setFinish_time(dateUtil.getNowFormat3().toString());
-        String Response_data="";
-        try{
-            Response_data=ret.toString();
-        }catch (Exception e) {
-
-        }
+        String Response_data=ret.toString();
         aspectLogBO.setResponse_data("");
-        aspectLogBO.setResponse_data(Response_data);
+        if(Response_data.length()<1200){
+            aspectLogBO.setResponse_data(Response_data);
+        }
+        else{
+            aspectLogBO.setResponse_data(Response_data.substring(1,Response_data.length()/2));
+        }
         aspectLogBO.setTime(String.valueOf((endTime - startTime)));
         try{
             username=userUtil.getCurrentUserInfo().getRealName();

@@ -18,24 +18,15 @@
         <module name="ScheduleService" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="GateWay" target="1.8" />
-      <module name="GBFService" target="1.8" />
-      <module name="SpringCloud-Client" target="1.8" />
-      <module name="SpringCloud-Client2" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CommonService" options="-parameters" />
       <module name="CommonService-api" options="-parameters" />
       <module name="GBF" options="-parameters" />
-      <module name="GBFService" options="-parameters" />
-      <module name="GateWay" options="-parameters" />
       <module name="MQService" options="-parameters" />
       <module name="MQService-api" options="-parameters" />
       <module name="ScheduleService" options="-parameters" />
-      <module name="SpringCloud-Client" options="-parameters" />
       <module name="SpringCloudProvider" options="-parameters" />
       <module name="Token" options="-parameters" />
       <module name="Token-api" options="-parameters" />

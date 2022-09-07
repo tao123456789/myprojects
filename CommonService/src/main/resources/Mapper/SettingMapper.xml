@@ -7,14 +7,14 @@
 <!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
 <mapper namespace="com.example.common.Mapper.SettingMapper">
     <!--定义一个基础返回类型-->
-    <resultMap id="BaseResultMap" type="com.example.common.Entity.BO.setting.SettingBO">
+    <resultMap id="BaseResultMap" type="com.example.common.Entity.BO.SettingBO.SettingBO">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
     </resultMap>
 
-    <select id="getSetting" resultMap="BaseResultMap" parameterType="com.example.common.Entity.BO.setting.SettingBO">
+    <select id="getSetting" resultMap="BaseResultMap" parameterType="com.example.common.Entity.BO.SettingBO.SettingBO">
         select * from setting where 1=1
         <if test='name!=null'>
             and name=#{name}
@@ -27,7 +27,7 @@
         </if>
     </select>
 
-    <update id="updateSettingByName" parameterType="com.example.common.Entity.BO.setting.SettingBO">
+    <update id="updateSettingByName" parameterType="com.example.common.Entity.BO.SettingBO.SettingBO">
         update setting
         <set>
         <if test='type!=null' >
